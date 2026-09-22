@@ -3,6 +3,7 @@
  */
 import { SearchDialog } from '@/components/SearchDialog';
 import { ThemeDropdown } from '@/components/ui/ThemeDropdown';
+import { UnitDropdown } from '@/components/UnitDropdown';
 
 /**
  * Assets
@@ -19,6 +20,8 @@ export const TopAppBar = () => {
 
         <div className='flex gap-2'>
           <ThemeDropdown />
+
+          <UnitDropdown />
         </div>
       </header>
     </div>
