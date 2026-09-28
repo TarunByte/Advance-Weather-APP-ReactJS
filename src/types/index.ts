@@ -158,8 +158,8 @@ export interface WeatherCondition {
 
 export interface CurrentWeather {
   dt: number;
-  sunrise: number;
-  sunset: number;
+  sunrise?: number;
+  sunset?: number;
   temp: number;
   feels_like: number;
   pressure: number;
@@ -170,8 +170,8 @@ export interface CurrentWeather {
   visibility: number;
   wind_speed: number;
   wind_deg: number;
-  wind_gust: number;
-  weather: [WeatherCondition];
+  wind_gust?: number;
+  weather: WeatherCondition[];
 }
 
 export interface MinutelyForecast {
@@ -237,11 +237,25 @@ export interface OneCallWeatherRes {
   lon: number;
   timezone: string;
   timezone_offset: number;
-  current: CurrentWeather;
-  minutely: MinutelyForecast[];
-  hourly: HourlyForecast[];
-  daily: DailyForecast[];
-  alerts?: Alert[];
+  data: CurrentWeather[];
+}
+
+// Hourly response
+export interface OneCallHourlyRes {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezone_offset: number;
+  data: HourlyForecast[];
+}
+
+// Daily response
+export interface OneCallDailyRes {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezone_offset: number;
+  data: DailyForecast[];
 }
 
 export type WeatherTimezone = {

@@ -1,21 +1,17 @@
 /**
  * Node modules
  */
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
 /**
  * Styles
  */
-import "@/index.css";
+import '@/index.css';
 
 /**
  * Components
  */
-import { App } from "./App.tsx";
+import { App } from './App.tsx';
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+createRoot(document.getElementById('root')!).render(<App />);

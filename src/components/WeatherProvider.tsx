@@ -26,6 +26,8 @@ import type {
   Geocoding,
   WeatherTimezone,
   OneCallWeatherRes,
+  OneCallHourlyRes,
+  OneCallDailyRes,
 } from '@/types';
 
 type Weather = {
@@ -74,10 +76,10 @@ export const WeatherProvider = ({ children }: React.PropsWithChildren) => {
   // States
   const [weather, setWeather] = useState<Weather | null>(null);
 
-  // Callbacks
+  // current
   const oneCall = useCallback(
     async (lat: number, lon: number, units: WeatherUnitType) => {
-      const response = await openWeatherApi.get('/data/2.5/weather', {
+      const response = await openWeatherApi.get('/data/4.0/onecall/current', {
         params: {
           lat,
           lon,
@@ -85,8 +87,38 @@ export const WeatherProvider = ({ children }: React.PropsWithChildren) => {
         },
       });
 
-      console.log(response.data);
+      console.log('APIdata : ', response.data);
       return response.data as OneCallWeatherRes;
+    },
+    [],
+  );
+
+  // Hourly
+  const getHourly = useCallback(
+    async (lat: number, lon: number, units: WeatherUnitType) => {
+      const response = await openWeatherApi.get(
+        '/data/4.0/onecall/timeline/1h',
+        {
+          params: { lat, lon, units },
+        },
+      );
+      console.log('APIdataHourly : ', response.data);
+
+      return response.data as OneCallHourlyRes;
+    },
+    [],
+  );
+
+  // Daily
+  const getDaily = useCallback(
+    async (lat: number, lon: number, units: WeatherUnitType) => {
+      const response = await openWeatherApi.get(
+        '/data/4.0/onecall/timeline/1day',
+        {
+          params: { lat, lon, units },
+        },
+      );
+      return response.data as OneCallDailyRes;
     },
     [],
   );
@@ -113,14 +145,16 @@ export const WeatherProvider = ({ children }: React.PropsWithChildren) => {
       unit = defualtUnit,
     }: WeatherStateParam) => {
       const oneCallRes = await oneCall(lat, lon, unit);
+      const getHourlyRes = await getHourly(lat, lon, unit);
       const reverseGeoRes = await reverseGeo(lat, lon);
+      const getDailyRes = await getDaily(lat, lon, unit);
 
       setWeather({
-        current: oneCallRes.current,
-        minutely: oneCallRes.minutely,
-        hourly: oneCallRes.hourly,
-        daily: oneCallRes.daily,
-        alerts: oneCallRes.alerts,
+        current: oneCallRes.data[0], // ← yahan change
+        minutely: [], // abhi empty
+        hourly: getHourlyRes.data || [],
+        daily: getDailyRes?.data || [],
+        alerts: undefined,
         location: reverseGeoRes[0],
         timezone: {
           timezone: oneCallRes.timezone,
