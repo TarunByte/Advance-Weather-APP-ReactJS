@@ -1,0 +1,98 @@
+/**
+ * Hooks
+ */
+import { useState } from 'react';
+
+/**
+ * Components
+ */
+import { Tabs, TabsTrigger, TabsList, TabsContent } from '@/components/ui/tabs';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+
+/**
+ * Types
+ */
+type Tab =
+  | 'overview'
+  | 'precipitation'
+  | 'wind'
+  | 'humidity'
+  | 'cloudCover'
+  | 'pressure'
+  | 'uv'
+  | 'visibility'
+  | 'feelsLike';
+
+/**
+ * Constants
+ */
+const TABS_LIST = [
+  {
+    title: 'Overview',
+    value: 'overview',
+  },
+  {
+    title: 'Precipitation',
+    value: 'precipitation',
+  },
+  {
+    title: 'Wind',
+    value: 'wind',
+  },
+  {
+    title: 'Humidity',
+    value: 'humidity',
+  },
+  {
+    title: 'Cloud cover',
+    value: 'cloudCover',
+  },
+  {
+    title: 'Pressure',
+    value: 'pressure',
+  },
+  {
+    title: 'UV',
+    value: 'uv',
+  },
+  {
+    title: 'Visibility',
+    value: 'visibility',
+  },
+  {
+    title: 'Feels like',
+    value: 'feelsLike',
+  },
+];
+
+export const HourlyWeatherTabs = () => {
+  // States
+  const [tab, setTab] = useState<Tab>('overview');
+
+  return (
+    <Tabs
+      value={tab}
+      onValueChange={(value) => setTab(value as Tab)}
+      className='py-1 gap-4'
+    >
+      <div className='flex items-center gap-4'>
+        <h2 className='text-lg font-semibold'></h2>
+
+        <TabsList
+          className='bg-background gap-2 overflow-x-auto overflow-y-hidden justify-start'
+          style={{ scrollbarWidth: 'none' }}
+        >
+          {TABS_LIST.map((item) => (
+            <TabsTrigger
+              key={item.value}
+              value={item.value}
+              className='border-none bg-secondary h-9 px-4 rounded-full data-active:bg-primary! data-active:text-background'
+            >
+              {item.title}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </div>
+    </Tabs>
+  );
+};

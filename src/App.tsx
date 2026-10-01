@@ -7,6 +7,7 @@ import { TopAppBar } from '@/components/TopAppBar';
 import { PageHeader } from '@/components/PageHeader';
 import { CurrentWeatherCard } from '@/components/CurrentWeatherCard';
 import { Map } from '@/components/Map';
+import { HourlyWeatherTabs } from '@/components/HourlyWeatherTabs';
 
 export const App = () => {
   return (
@@ -25,6 +26,8 @@ export const App = () => {
 
               <Map />
             </div>
+
+            <HourlyWeatherTabs />
           </div>
         </main>
       </WeatherProvider>
