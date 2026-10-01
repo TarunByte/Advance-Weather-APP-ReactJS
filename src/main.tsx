@@ -8,6 +8,7 @@ import { createRoot } from 'react-dom/client';
  * Styles
  */
 import '@/index.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 /**
  * Components

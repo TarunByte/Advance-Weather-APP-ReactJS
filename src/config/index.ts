@@ -1,7 +1,7 @@
 /**
  * Types
  */
-// import type { LngLatLike } from 'mapbox-gl';
+import type { LngLatLike } from 'mapbox-gl';
 
 export const WEATHER_API = {
   DEFAULTS: {
