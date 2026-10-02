@@ -8,6 +8,7 @@ import { useState } from 'react';
  */
 import { Tabs, TabsTrigger, TabsList, TabsContent } from '@/components/ui/tabs';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { OverviewChart } from '@/components/OverviewChart';
 
 /**
  * Types
@@ -73,10 +74,10 @@ export const HourlyWeatherTabs = () => {
     <Tabs
       value={tab}
       onValueChange={(value) => setTab(value as Tab)}
-      className='py-1 gap-4'
+      className='py-4 gap-4'
     >
       <div className='flex items-center gap-4'>
-        <h2 className='text-lg font-semibold'></h2>
+        <h2 className='text-lg font-semibold'>Hourly</h2>
 
         <TabsList
           className='bg-background gap-2 overflow-x-auto overflow-y-hidden justify-start'
@@ -93,6 +94,19 @@ export const HourlyWeatherTabs = () => {
           ))}
         </TabsList>
       </div>
+
+      {/* Overview tab */}
+      <TabsContent value='overview'>
+        <Card>
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <OverviewChart />
+          </CardContent>
+        </Card>
+      </TabsContent>
     </Tabs>
   );
 };
