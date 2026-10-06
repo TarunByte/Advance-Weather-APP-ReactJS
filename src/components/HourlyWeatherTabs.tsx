@@ -10,6 +10,7 @@ import { Tabs, TabsTrigger, TabsList, TabsContent } from '@/components/ui/tabs';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { OverviewChart } from '@/components/OverviewChart';
 import { PrecipitationChart } from '@/components/PrecipitationChart';
+import { WindChart } from '@/components/WindChart';
 
 /**
  * Types
@@ -118,6 +119,19 @@ export const HourlyWeatherTabs = () => {
 
           <CardContent>
             <PrecipitationChart />
+          </CardContent>
+        </Card>
+      </TabsContent>
+
+      {/* Wind tab */}
+      <TabsContent value='wind'>
+        <Card>
+          <CardHeader>
+            <CardTitle>Wind</CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <WindChart />
           </CardContent>
         </Card>
       </TabsContent>
