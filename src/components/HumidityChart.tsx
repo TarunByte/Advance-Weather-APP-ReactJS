@@ -27,17 +27,17 @@ import type { ChartConfig } from '@/components/ui/chart';
  * Chart config
  */
 const chartConfig = {
-  temp: {
-    label: 'Temperature',
-    color: 'var(--chart-1)',
+  humidity: {
+    label: 'Humidity',
+    color: 'var(--humidity)',
   },
-  feels: {
-    label: 'Feels like',
-    color: 'var(--muted-foreground)',
+  dew_point: {
+    label: 'Dew point',
+    color: 'var(--dew-point)',
   },
 } satisfies ChartConfig;
 
-export const OverviewChart = () => {
+export const HumidityChart = () => {
   // Hooks
   const { weather } = useWeather();
 
@@ -48,8 +48,8 @@ export const OverviewChart = () => {
         hour: 'numeric',
         hour12: true,
       }),
-      temp: item.temp.toFixed(),
-      feels: item.feels_like.toFixed(),
+      humidity: item.humidity,
+      dew_point: item.dew_point,
     }));
   }, [weather]);
 
@@ -75,12 +75,10 @@ export const OverviewChart = () => {
         />
 
         <YAxis
-          dataKey='temp'
+          dataKey='humidity'
           tickLine={false}
           axisLine={false}
-          tickCount={5}
           tickMargin={16}
-          tickFormatter={(value) => `${value}°`}
         />
 
         <ChartTooltip
@@ -90,7 +88,7 @@ export const OverviewChart = () => {
 
         <defs>
           <linearGradient
-            id='fillTemp'
+            id='fillHumidity'
             x1='0'
             y1='0'
             x2='0'
@@ -98,38 +96,33 @@ export const OverviewChart = () => {
           >
             <stop
               offset='0%'
-              stopColor='var(--temp-high)'
+              stopColor='var(--color-humidity)'
               stopOpacity={1}
             />
 
             <stop
-              offset='50%'
-              stopColor='var(--temp-mid)'
-              stopOpacity={0.5}
-            />
-
-            <stop
               offset='100%'
-              stopColor='var(--temp-low)'
+              stopColor='var(--color-humidity)'
               stopOpacity={0}
             />
           </linearGradient>
         </defs>
 
         <Area
-          dataKey='temp'
+          dataKey='humidity'
           type='natural'
-          fill='url(#fillTemp)'
+          fill='url(#fillHumidity)'
           fillOpacity={0.5}
-          stroke='var(--color-temp)'
+          stroke='var(--color-hu)'
           strokeOpacity={0}
         />
 
         <Area
-          dataKey='feels'
+          dataKey='dew_point'
           type='natural'
+          fill='var(--color-dew_point)'
           fillOpacity={0}
-          stroke='var(--color-feels)'
+          stroke='var(--color-dew_point)'
           strokeWidth={2}
           activeDot={false}
         />

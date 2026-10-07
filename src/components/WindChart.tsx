@@ -59,7 +59,7 @@ export const WindChart = () => {
   return (
     <ChartContainer
       config={chartConfig}
-      className='h=[360px] w-full'
+      className='h-[360px] w-full'
     >
       <AreaChart
         accessibilityLayer
