@@ -27,17 +27,13 @@ import type { ChartConfig } from '@/components/ui/chart';
  * Chart config
  */
 const chartConfig = {
-  rain: {
-    label: 'Rain',
-    color: 'var(--rain)',
-  },
-  snow: {
-    label: 'snow',
-    color: 'var(--snow)',
+  clouds: {
+    label: 'Clout cover',
+    color: 'var(--clouds)',
   },
 } satisfies ChartConfig;
 
-export const PrecipitationChart = () => {
+export const CloudCoverChart = () => {
   // Hooks
   const { weather } = useWeather();
 
@@ -48,9 +44,7 @@ export const PrecipitationChart = () => {
         hour: 'numeric',
         hour12: true,
       }),
-      pop: item.pop,
-      rain: item.rain?.['1h'] || 0,
-      snow: item.snow?.['1h'] || 0,
+      clouds: item.clouds,
     }));
   }, [weather]);
 
@@ -78,10 +72,9 @@ export const PrecipitationChart = () => {
         />
 
         <YAxis
-          dataKey='pop'
+          dataKey='clouds'
           tickLine={false}
           axisLine={false}
-          tickCount={3}
           tickMargin={16}
         />
 
@@ -91,16 +84,9 @@ export const PrecipitationChart = () => {
         />
 
         <Bar
-          dataKey='rain'
-          fill='var(--color-rain)'
-          stroke='var(--color-rain)'
-          radius={[100, 100, 0, 0]}
-        />
-
-        <Bar
-          dataKey='snow'
-          fill='var(--color-snow)'
-          stroke='var(--color-snow)'
+          dataKey='clouds'
+          fill='var(--color-clouds)'
+          stroke='var(--color-clouds)'
           radius={[100, 100, 0, 0]}
         />
 

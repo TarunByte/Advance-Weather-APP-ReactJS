@@ -12,6 +12,7 @@ import { OverviewChart } from '@/components/OverviewChart';
 import { PrecipitationChart } from '@/components/PrecipitationChart';
 import { WindChart } from '@/components/WindChart';
 import { HumidityChart } from '@/components/HumidityChart';
+import { CloudCoverChart } from '@/components/CloudCover';
 
 /**
  * Types
@@ -74,81 +75,96 @@ export const HourlyWeatherTabs = () => {
   const [tab, setTab] = useState<Tab>('overview');
 
   return (
-    <Tabs
-      value={tab}
-      onValueChange={(value) => setTab(value as Tab)}
-      className='py-4 gap-4'
-    >
-      <div className='flex items-center gap-4'>
-        <h2 className='text-lg font-semibold'>Hourly</h2>
+    <div className='w-full mt-6'>
+      <Tabs
+        value={tab}
+        onValueChange={(value) => setTab(value as Tab)}
+        className='w-full flex flex-col gap-4'
+      >
+        {/* Header */}
+        <div className='flex flex-col gap-3'>
+          <h2 className='text-lg font-semibold'>Hourly</h2>
 
-        <TabsList
-          className='bg-background gap-2 overflow-x-auto overflow-y-hidden justify-start'
-          style={{ scrollbarWidth: 'none' }}
-        >
-          {TABS_LIST.map((item) => (
-            <TabsTrigger
-              key={item.value}
-              value={item.value}
-              className='border-none bg-secondary h-9 px-4 rounded-full data-active:bg-primary! data-active:text-background'
-            >
-              {item.title}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </div>
+          <div className='w-full overflow-x-auto scrollbar-none'>
+            <TabsList className='inline-flex w-max gap-2 bg-background p-1'>
+              {TABS_LIST.map((item) => (
+                <TabsTrigger
+                  key={item.value}
+                  value={item.value}
+                  className='shrink-0 rounded-full border-none bg-secondary h-9 px-4 data-active:bg-primary! data-active:text-primary-foreground'
+                >
+                  {item.title}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
+        </div>
 
-      {/* Overview tab */}
-      <TabsContent value='overview'>
-        <Card>
-          <CardHeader>
-            <CardTitle>Overview</CardTitle>
-          </CardHeader>
+        {/* Overview tab */}
+        <TabsContent value='overview'>
+          <Card>
+            <CardHeader>
+              <CardTitle>Overview</CardTitle>
+            </CardHeader>
 
-          <CardContent>
-            <OverviewChart />
-          </CardContent>
-        </Card>
-      </TabsContent>
+            <CardContent>
+              <OverviewChart />
+            </CardContent>
+          </Card>
+        </TabsContent>
 
-      {/* Precipitation tab */}
-      <TabsContent value='precipitation'>
-        <Card>
-          <CardHeader>
-            <CardTitle>Precipitation</CardTitle>
-          </CardHeader>
+        {/* Precipitation tab */}
+        <TabsContent value='precipitation'>
+          <Card>
+            <CardHeader>
+              <CardTitle>Precipitation</CardTitle>
+            </CardHeader>
 
-          <CardContent>
-            <PrecipitationChart />
-          </CardContent>
-        </Card>
-      </TabsContent>
+            <CardContent>
+              <PrecipitationChart />
+            </CardContent>
+          </Card>
+        </TabsContent>
 
-      {/* Wind tab */}
-      <TabsContent value='wind'>
-        <Card>
-          <CardHeader>
-            <CardTitle>Wind</CardTitle>
-          </CardHeader>
+        {/* Wind tab */}
+        <TabsContent value='wind'>
+          <Card>
+            <CardHeader>
+              <CardTitle>Wind</CardTitle>
+            </CardHeader>
 
-          <CardContent>
-            <WindChart />
-          </CardContent>
-        </Card>
-      </TabsContent>
+            <CardContent>
+              <WindChart />
+            </CardContent>
+          </Card>
+        </TabsContent>
 
-      {/* Humidity tab */}
-      <TabsContent value='humidity'>
-        <Card>
-          <CardHeader>
-            <CardTitle>Humidity</CardTitle>
-          </CardHeader>
+        {/* Humidity tab */}
+        <TabsContent value='humidity'>
+          <Card>
+            <CardHeader>
+              <CardTitle>Humidity</CardTitle>
+            </CardHeader>
 
-          <CardContent>
-            <HumidityChart />
-          </CardContent>
-        </Card>
-      </TabsContent>
-    </Tabs>
+            <CardContent>
+              <HumidityChart />
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Cloud cover tab */}
+        <TabsContent value='cloudCover'>
+          <Card>
+            <CardHeader>
+              <CardTitle>Cloud cover</CardTitle>
+            </CardHeader>
+
+            <CardContent>
+              <CloudCoverChart />
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
   );
 };
