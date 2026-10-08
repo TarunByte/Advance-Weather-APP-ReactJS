@@ -30,6 +30,12 @@ export const App = () => {
             <HourlyWeatherTabs />
           </div>
         </main>
+
+        <footer className='pb-5'>
+          <p className='text-center text-muted-foreground'>
+            &copy; 2026 <a href=''>GonnaTextHere</a>
+          </p>
+        </footer>
       </WeatherProvider>
     </ThemeProvider>
   );
