@@ -55,7 +55,6 @@ export const SearchDialog = () => {
   // States
   const [search, setSearch] = useState<string>();
   const [results, setResults] = useState<Geocoding[]>([]);
-
   const [searchDialogOpen, setSearchDialogOpen] = useState<boolean>(false);
 
   // Search request
@@ -95,7 +94,7 @@ export const SearchDialog = () => {
     (async () => {
       const results = await geocoding(search);
 
-      console.log(results);
+      console.log('geocodeingResult : ', results);
 
       results && setResults(results);
     })();
