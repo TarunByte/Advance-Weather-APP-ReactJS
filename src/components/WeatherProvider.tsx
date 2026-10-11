@@ -87,7 +87,7 @@ export const WeatherProvider = ({ children }: React.PropsWithChildren) => {
         },
       });
 
-      console.log('APIdata : ', response.data);
+      console.log('APIdataOneCallWeatherRes : ', response.data);
       return response.data as OneCallWeatherRes;
     },
     [],
