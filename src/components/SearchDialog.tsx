@@ -168,9 +168,9 @@ export const SearchDialog = () => {
                   {country}
                 </ItemDescription>
               </ItemContent>
-              //? ItemActions
+              {/* ItemActions */}
               {/* Groups the action control within each result item. */}
-              //? DialogClose
+              {/* DialogClose */}
               {/* Connects the button to the dialog's closing behavior. Selecting a location should close the search dialog. */}
               <ItemActions>
                 <DialogClose
