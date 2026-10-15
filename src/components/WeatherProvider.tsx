@@ -118,6 +118,7 @@ export const WeatherProvider = ({ children }: React.PropsWithChildren) => {
           params: { lat, lon, units },
         },
       );
+      console.log('APIdatDaily : ', response.data);
       return response.data as OneCallDailyRes;
     },
     [],
@@ -162,7 +163,15 @@ export const WeatherProvider = ({ children }: React.PropsWithChildren) => {
         },
       });
     },
-    [defualtLat, defualtLon, defualtUnit, oneCall, reverseGeo],
+    [
+      defualtLat,
+      defualtLon,
+      defualtUnit,
+      oneCall,
+      getHourly,
+      getDaily,
+      reverseGeo,
+    ],
   );
 
   // Initial weather call
